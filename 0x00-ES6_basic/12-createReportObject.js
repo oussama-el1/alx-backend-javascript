@@ -1,8 +1,8 @@
 export default function createReportObject(employeesList) {
   const obj = {
     allEmployees: { ...employeesList },
-    getNumberOfDepartments() {
-      const { length } = Object.keys(obj);
+    getNumberOfDepartments(allemp) {
+      const { length } = Object.keys(allemp);
       return length;
     },
   };
