@@ -6,7 +6,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     .then((result) => {
       const mappedResult = result.map((elt) => ({
         status: elt.status,
-        value: Object.prototype.hasOwnProperty.call(elt, 'reason') ? elt.reason : elt.value,
+        value: Object.prototype.hasOwnProperty.call(elt, 'reason') ? String(elt.reason) : elt.value,
       }));
       return mappedResult;
     });
