@@ -1,5 +1,3 @@
-import util from 'util';
-
 export default class Airport {
   constructor(name, code) {
     this.name = name;
@@ -26,11 +24,7 @@ export default class Airport {
     return this._code;
   }
 
-  toString() {
-    return `[object ${this._code}]`;
-  }
-
-  [util.inspect.custom]() {
-    return `Airport [${this._code}] { _name: '${this._name}', _code: '${this._code}' }`;
+  get [Symbol.toStringTag]() {
+    return this._code;
   }
 }
