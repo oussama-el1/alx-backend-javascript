@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="733a6563-d36b-42b7-8481-6d97328952e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../0x03-ES6_data_manipulation/100-main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../0x03-ES6_data_manipulation/100-main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_0/js/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/task_0/js/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_0/js/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_0/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/task_0/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_0/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/task_0/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_0/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/task_0/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,10 +26,10 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2fvbGvZOKqjwj0XrWJnzm6EnUb6" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -39,7 +47,6 @@
     "git-widget-placeholder": "master",
     "javascript.nodejs.core.library.configured.version": "21.5.0",
     "javascript.nodejs.core.library.typings.version": "20.12.8",
-    "js.linters.configure.manually.selectedeslint": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -47,11 +54,21 @@
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.1.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "C:\\Users\\oussama\\Desktop\\Specializations\\repos\\alx-backend-javascript\\0x04-TypeScript\\task_0\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
+    ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\oussama\Desktop\Specializations\repos\alx-backend-javascript\0x04-TypeScript\task_0" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -67,11 +84,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714684412649</updated>
-      <workItem from="1714684417226" duration="1617000" />
+      <workItem from="1714684417226" duration="2421000" />
+      <workItem from="1714686904646" duration="2794000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/task_0/js/main.js" />
+      </list>
+    </option>
   </component>
 </project>
