@@ -16,7 +16,6 @@ const countStudents = (csvPath) => {
 
   for (let i = 1; i <= count; i += 1) {
     const line = lines[i].split(',');
-
     const studentName = line[0].trim();
     const studentClass = line[3].trim();
 
