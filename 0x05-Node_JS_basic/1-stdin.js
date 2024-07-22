@@ -1,13 +1,14 @@
-console.log('Welcome to Holberton School, what is your name?\n');
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
 function onExit() {
-  console.log('This important software is now closing\n');
-  process.exit();
+  process.stdout.write('This important software is now closing\n');
 }
 
 process.stdin.on('data', (data) => {
   const name = data;
-  console.log(`Your name is: ${name}`);
-
-  onExit();
+  process.stdout.write(`Your name is: ${name}`);
+  process.exit();
 });
+
+process.on('exit', onExit);
+process.on('SIGINT', onExit);
