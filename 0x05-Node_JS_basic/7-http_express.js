@@ -20,8 +20,7 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
       reportParts.push(`Number of students: ${count}`);
       const swe = [];
       const cs = [];
-      for (let i = 1; i <= count; i += 1)
-      {
+      for (let i = 1; i <= count; i += 1) {
         const student = lines[i].trim();
         const firstname = student.split(',')[0];
         const field = student.split(',')[3];
