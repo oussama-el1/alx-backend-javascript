@@ -30,13 +30,12 @@ const app = http.createServer(async (req, res) => {
         }
       }
       response.push(`Number of students in CS: ${CS.length}. List: ${CS.join(', ')}`);
-      response.push(`Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}\n`);
+      response.push(`Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}`);
 
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end(response.join('\n'));
     } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Cannot load the database');
+      throw new Error('Cannot load the database');
     }
   }
 });
