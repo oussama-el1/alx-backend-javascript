@@ -4,59 +4,84 @@ const fs = require('fs').promises;
 const PORT = 1245;
 const csvPath = process.argv.length > 2 ? process.argv[2] : '';
 
+const countStudents = (dataPath) => new Promise((resolve, reject) => {
+  if (!dataPath) {
+    reject(new Error('Cannot load the database'));
+    return;
+  }
+
+  fs.readFile(dataPath, 'utf-8')
+    .then((data) => {
+      const reportParts = [];
+      const lines = data.trim().split('\n');
+      const studentGroups = {};
+      const dbFieldNames = lines[0].split(',');
+      const studentPropNames = dbFieldNames.slice(0, dbFieldNames.length - 1);
+
+      for (const line of lines.slice(1)) {
+        const studentRecord = line.split(',');
+        const studentPropValues = studentRecord.slice(0, studentRecord.length - 1);
+        const field = studentRecord[studentRecord.length - 1];
+        if (!Object.keys(studentGroups).includes(field)) {
+          studentGroups[field] = [];
+        }
+        const studentEntries = studentPropNames.map((propName, idx) => [
+          propName,
+          studentPropValues[idx],
+        ]);
+        studentGroups[field].push(Object.fromEntries(studentEntries));
+      }
+
+      const totalStudents = Object.values(studentGroups).reduce(
+        (pre, cur) => (pre || []).length + cur.length,
+      );
+      reportParts.push(`Number of students: ${totalStudents}`);
+      for (const [field, group] of Object.entries(studentGroups)) {
+        reportParts.push([
+          `Number of students in ${field}: ${group.length}.`,
+          'List:',
+          group.map((student) => student.firstname).join(', '),
+        ].join(' '));
+      }
+      resolve(reportParts.join('\n'));
+    })
+    .catch(() => {
+      reject(new Error('Cannot load the database'));
+    });
+});
+
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
-    const responseBody = 'Hello Holberton School!';
+    const responseText = 'Hello Holberton School!';
     res.writeHead(200, {
       'Content-Type': 'text/plain',
-      'Content-Length': Buffer.byteLength(responseBody),
+      'Content-Length': Buffer.byteLength(responseText),
     });
-    res.end(responseBody);
+    res.end(responseText);
   } else if (req.url === '/students') {
     try {
-      const data = await fs.readFile(csvPath, 'utf-8');
-      const lines = data.trim().split('\n');
-      const count = lines.length - 1;
-
-      const response = ['This is the list of our students'];
-      response.push(`Number of students: ${count}`);
-
-      const CS = [];
-      const SWE = [];
-      for (let i = 1; i <= count; i += 1) {
-        const line = lines[i].split(',');
-        const studentName = line[0].trim();
-        const studentClass = line[3].trim();
-        if (studentClass === 'CS') {
-          CS.push(studentName);
-        } else if (studentClass === 'SWE') {
-          SWE.push(studentName);
-        }
-      }
-      response.push(`Number of students in CS: ${CS.length}. List: ${CS.join(', ')}`);
-      response.push(`Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}`);
-
-      const responseBody = response.join('\n');
+      const report = await countStudents(csvPath);
+      const responseText = `This is the list of our students\n${report}`;
       res.writeHead(200, {
         'Content-Type': 'text/plain',
-        'Content-Length': Buffer.byteLength(responseBody),
+        'Content-Length': Buffer.byteLength(responseText),
       });
-      res.end(responseBody);
+      res.end(responseText);
     } catch (err) {
-      const responseBody = 'Cannot load the database';
+      const responseText = `This is the list of our students\n${err.message}`;
       res.writeHead(500, {
         'Content-Type': 'text/plain',
-        'Content-Length': Buffer.byteLength(responseBody),
+        'Content-Length': Buffer.byteLength(responseText),
       });
-      res.end(responseBody);
+      res.end(responseText);
     }
   } else {
-    const responseBody = 'Not Found';
+    const responseText = 'Not Found';
     res.writeHead(404, {
       'Content-Type': 'text/plain',
-      'Content-Length': Buffer.byteLength(responseBody),
+      'Content-Length': Buffer.byteLength(responseText),
     });
-    res.end(responseBody);
+    res.end(responseText);
   }
 });
 
