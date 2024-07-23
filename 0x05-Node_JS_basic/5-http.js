@@ -2,12 +2,16 @@ const http = require('http');
 const fs = require('fs').promises;
 
 const PORT = 1245;
-const csvPath = process.argv[2];
+const csvPath = process.argv.length > 2 ? process.argv[2] : '';
 
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello Holberton School!');
+    const responseBody = 'Hello Holberton School!';
+    res.writeHead(200, {
+      'Content-Type': 'text/plain',
+      'Content-Length': Buffer.byteLength(responseBody),
+    });
+    res.end(responseBody);
   } else if (req.url === '/students') {
     try {
       const data = await fs.readFile(csvPath, 'utf-8');
@@ -32,11 +36,27 @@ const app = http.createServer(async (req, res) => {
       response.push(`Number of students in CS: ${CS.length}. List: ${CS.join(', ')}`);
       response.push(`Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}`);
 
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end(response.join('\n'));
+      const responseBody = response.join('\n');
+      res.writeHead(200, {
+        'Content-Type': 'text/plain',
+        'Content-Length': Buffer.byteLength(responseBody),
+      });
+      res.end(responseBody);
     } catch (err) {
-      throw new Error('Cannot load the database');
+      const responseBody = 'Cannot load the database';
+      res.writeHead(500, {
+        'Content-Type': 'text/plain',
+        'Content-Length': Buffer.byteLength(responseBody),
+      });
+      res.end(responseBody);
     }
+  } else {
+    const responseBody = 'Not Found';
+    res.writeHead(404, {
+      'Content-Type': 'text/plain',
+      'Content-Length': Buffer.byteLength(responseBody),
+    });
+    res.end(responseBody);
   }
 });
 
