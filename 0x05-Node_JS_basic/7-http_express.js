@@ -14,21 +14,27 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
   fs.readFile(dataPath, 'utf-8')
     .then((data) => {
       const reportParts = [];
-      const lines = data.split('\n');
+      const lines = data.trim().split('\n');
       const count = lines.length - 1;
+
       reportParts.push(`Number of students: ${count}`);
+
       const swe = [];
       const cs = [];
       for (let i = 1; i <= count; i += 1) {
         const student = lines[i].trim();
-        const firstname = student.split(',')[0];
-        const field = student.split(',')[3];
-        if (field === 'CS') {
-          cs.push(firstname);
-        } else if (field === 'SWE') {
-          swe.push(firstname);
+        if (student) {
+          const studentFields = student.split(',');
+          const firstname = studentFields[0];
+          const field = studentFields[3];
+          if (field === 'CS') {
+            cs.push(firstname);
+          } else if (field === 'SWE') {
+            swe.push(firstname);
+          }
         }
       }
+
       reportParts.push(`Number of students in CS: ${cs.length}. List: ${cs.join(', ')}`);
       reportParts.push(`Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`);
       resolve(reportParts.join('\n'));
