@@ -14,7 +14,6 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
   fs.readFile(dataPath, 'utf-8')
     .then((data) => {
       const reportParts = [];
-      reportParts.push('This is the list of our students');
       const lines = data.split('\n');
       const count = lines.length - 1;
       reportParts.push(`Number of students: ${count}`);
@@ -46,7 +45,7 @@ app.get('/', (req, res) => {
 app.get('/students', async (req, res) => {
   try {
     const report = await countStudents(csvPath);
-    const responseText = `${report}`;
+    const responseText = `This is the list of our students\n${report}`;
     res.set('Content-Type', 'text/plain');
     res.set('Content-Length', Buffer.byteLength(responseText));
     res.send(responseText);
