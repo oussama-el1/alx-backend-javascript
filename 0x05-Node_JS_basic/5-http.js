@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs').promises;
 
 const PORT = 1245;
-const csvPath = 'database.csv';
+const csvPath = process.argv[2];
 
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
@@ -14,7 +14,8 @@ const app = http.createServer(async (req, res) => {
       const lines = data.trim().split('\n');
       const count = lines.length - 1;
 
-      const response = [`Number of students: ${count}`];
+      const response = ['This is the list of our students'];
+      response.push(`Number of students: ${count}`);
 
       const CS = [];
       const SWE = [];
