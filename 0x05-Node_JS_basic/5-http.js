@@ -30,7 +30,7 @@ const app = http.createServer(async (req, res) => {
         }
       }
       response.push(`Number of students in CS: ${CS.length}. List: ${CS.join(', ')}`);
-      response.push(`Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}`);
+      response.push(`Number of students in SWE: ${SWE.length}. List: ${SWE.join(', ')}\n`);
 
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end(response.join('\n'));
